@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="squad.seven.bayarkas.HomeActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:elevation="0dp">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="#00B294"
+        android:text="Bayar Kas Apps"
+        android:textSize="25dp"
+        android:textColor="#ffffff"
+
+        />
+
+    <LinearLayout
+        android:layout_width="365dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/home"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/home"
+            />
+        <Button
+            android:id="@+id/rekap"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:background="@drawable/rekap"/>
+        <Button
+            android:id="@+id/setting"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/setting"/>
+
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_width="375dp"
+        android:layout_height="3dp"
+        android:background="@android:color/black"
+        android:layout_gravity="center"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Selasa / 7 Maret 2018"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:id="@+id/content_view"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:orientation="vertical"></LinearLayout>
+
+    <Button
+        android:id="@+id/button_tambah"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
+        android:background="#00B294"
+        android:text="Tambah"
+        android:textSize="18dp"
+        android:layout_marginTop="15dp"
+        android:textColor="#ffffff"
+        android:layout_gravity="center"
+        android:textStyle="bold"/>
+
+
+</LinearLayout>
