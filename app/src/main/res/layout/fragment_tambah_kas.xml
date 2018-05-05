@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@android:color/white"
     tools:context="squad.seven.bayarkas.Fragment.FragmentTambahKas">
 
     <!-- TODO: Update blank fragment layout -->
@@ -20,19 +21,13 @@
 
         />
 
-    <View
-        android:layout_width="375dp"
-        android:layout_height="2dp"
-        android:layout_gravity="center"
-        android:background="@android:color/black"
-        android:layout_marginTop="10dp">
-    </View>
-
     <android.support.v7.widget.CardView
-        android:layout_width="375dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
 
         >
         <LinearLayout
@@ -55,8 +50,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     />
-                <EditText
-                    android:id="@+id/nama"
+                <AutoCompleteTextView
+                    android:id="@+id/nama_tambah_kas"
                     android:layout_width="308dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -104,6 +99,7 @@
                     android:layout_marginLeft="10dp"
                     />
                 <EditText
+                    android:id="@+id/penerima"
                     android:layout_width="308dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -155,7 +151,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:hint="Tanggal Bayar"
-                    android:paddingLeft="5dp"/>
+                    android:paddingLeft="5dp"
+                    android:enabled="false"/>
 
             </LinearLayout>
 
@@ -168,7 +165,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
 
         >

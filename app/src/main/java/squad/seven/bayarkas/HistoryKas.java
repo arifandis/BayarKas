@@ -27,4 +27,5 @@ public class HistoryKas {
         this.nama = nama;
         this.nominal = nominal;
     }
+    public HistoryKas() {}
 }
