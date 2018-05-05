@@ -53,8 +53,6 @@
             android:layout_height="70dp"
             android:background="@drawable/setting"/>
 
-
-
     </LinearLayout>
 
     <View

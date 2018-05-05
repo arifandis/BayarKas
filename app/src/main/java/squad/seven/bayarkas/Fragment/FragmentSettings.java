@@ -43,7 +43,7 @@ public class FragmentSettings extends Fragment {
     }
 
     void moveFragment(View v){
-        Fragment fragment=null;
+        Fragment fragment = null;
         if (v.equals(mTambahData)){
             fragment = new FragmentTambahData();
         }
