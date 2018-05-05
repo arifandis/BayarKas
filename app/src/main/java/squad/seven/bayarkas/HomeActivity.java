@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import squad.seven.bayarkas.Fragment.FragmentRekap;
 import squad.seven.bayarkas.Fragment.FragmentSettings;
@@ -15,8 +16,8 @@ import squad.seven.bayarkas.Fragment.ViewHistoryFragment;
 
 public class HomeActivity extends AppCompatActivity {
     AppBarLayout mAppBarLayout;
-    Button mHomeBtn,mRekapBtn,mSettingBtn,mTambahBtn;
-    Fragment fragment;
+    Button mHomeBtn,mRekapBtn,mSettingBtn;
+    int count=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,58 +28,65 @@ public class HomeActivity extends AppCompatActivity {
         mHomeBtn = findViewById(R.id.home);
         mRekapBtn = findViewById(R.id.rekap);
         mSettingBtn = findViewById(R.id.setting);
-        mTambahBtn = findViewById(R.id.button_tambah);
 
-        toViewContent();
+        firstFragment();
 
-        mTambahBtn.setOnClickListener(new View.OnClickListener() {
+        mHomeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toViewTambahKas();
+                moveToFragment(R.id.home);
             }
         });
-
         mSettingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toViewSetting();
+                moveToFragment(R.id.setting);
             }
         });
-
         mRekapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toViewRekap();
+                moveToFragment(R.id.rekap);
             }
         });
 
     }
 
-    void toViewContent(){
-        fragment = new ViewHistoryFragment();
+    void firstFragment(){
+        Fragment fragment = new ViewHistoryFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_view,fragment);
         transaction.commit();
     }
 
-    void toViewSetting() {
-        fragment = new FragmentSettings();
+    void moveToFragment(int id){
+        Fragment fragment=null;
+        switch (id){
+            case R.id.home:
+                fragment = new ViewHistoryFragment();
+                break;
+            case R.id.rekap:
+                fragment = new FragmentRekap();
+                break;
+            case R.id.setting:
+                fragment = new FragmentSettings();
+                break;
+        }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_view, fragment);
+        transaction.replace(R.id.content_view,fragment);
         transaction.commit();
     }
 
-    void toViewTambahKas() {
-        fragment = new FragmentTambahKas();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_view, fragment);
-        transaction.commit();
-    }
-
-    void toViewRekap() {
-        fragment = new FragmentRekap();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_view, fragment);
-        transaction.commit();
+    @Override
+    public void onBackPressed() {
+        count++;
+        switch (count){
+            case 1:
+                Toast.makeText(this, "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT).show();
+                break;
+            case 2:
+                finish();
+                break;
+        }
     }
 }

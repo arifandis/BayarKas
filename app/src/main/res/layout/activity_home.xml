@@ -66,40 +66,10 @@
         android:layout_gravity="center"/>
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:layout_width="375dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Selasa / 7 Maret 2018"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
-
     <LinearLayout
         android:id="@+id/content_view"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
-        android:orientation="vertical">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_list_history"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/button_tambah"
-        android:layout_width="125dp"
-        android:layout_height="40dp"
-        android:background="#00B294"
-        android:text="Tambah"
-        android:textSize="18dp"
-        android:layout_marginTop="15dp"
-        android:textColor="#ffffff"
-        android:layout_gravity="center"
-        android:textStyle="bold"/>
-
+        android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
 
 </LinearLayout>

@@ -12,8 +12,7 @@
         android:id="@+id/tambah_data"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:background="#00B294"
+        android:background="@drawable/button_green"
         android:layout_gravity="center"
         android:text="tambah data"
         android:textSize="20dp"
@@ -25,7 +24,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="#00B294"
+        android:background="@drawable/button_green"
         android:text="edit"
         android:textColor="#ffffff"
         android:textSize="20dp" />
