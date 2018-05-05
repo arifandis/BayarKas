@@ -20,20 +20,20 @@
 
         />
 
-    <view
+    <View
+        android:background="@color/colorPrimaryDark"
         android:layout_width="375dp"
         android:layout_height="3dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp">
-    </view>
+    </View>
 
     <android.support.v7.widget.CardView
         android:layout_width="375dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="20dp">
 
-        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -79,7 +79,15 @@
         android:id="@+id/content_view"
         android:layout_width="match_parent"
         android:layout_height="380dp"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_list_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_tambah"
