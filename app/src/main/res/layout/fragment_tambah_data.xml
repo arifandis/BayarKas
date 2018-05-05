@@ -42,7 +42,7 @@
                     android:layout_marginLeft="10dp"
                     />
                 <EditText
-                    android:id="@+id/nama"
+                    android:id="@+id/nama_tambah_data"
                     android:layout_width="308dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -67,7 +67,7 @@
                     android:layout_marginLeft="10dp"
                     />
                 <EditText
-                    android:id="@+id/kementrian"
+                    android:id="@+id/kementrian_tambah_data"
                     android:layout_width="308dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -90,22 +90,22 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/batal"
+            android:id="@+id/batal_tambah_data"
             android:layout_width="110dp"
             android:layout_height="40dp"
             android:background="@drawable/button_green"
             android:text="Batal"
-            android:textSize="18dp"
-            android:textColor="#ffffff"/>
+            android:textColor="#ffffff"
+            android:textSize="18dp" />
 
         <Button
-            android:id="@+id/simpan"
+            android:id="@+id/simpan_tambah_data"
             android:layout_width="110dp"
             android:layout_height="40dp"
-            android:background="@drawable/button_green"
             android:layout_marginLeft="50dp"
+            android:background="@drawable/button_green"
             android:text="Simpan"
-            android:textSize="18dp"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:textSize="18dp" />
     </LinearLayout>
 </LinearLayout>
