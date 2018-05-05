@@ -1,6 +1,7 @@
 package squad.seven.bayarkas.Fragment;
 
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -70,8 +71,14 @@ public class FragmentTambahKas extends Fragment {
                 +"',"+ nominalBayar +"',"+tanggalBayar+ "');");
                 Toast.makeText(getActivity(), "Berhasil menambah transaksi", Toast.LENGTH_SHORT).show();
 //                db.close();
+                android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                Fragment simpanFragment = new FragmentSimpan();
+                transaction.replace(R.id.content_tambah_kas, simpanFragment);
+                transaction.commit();
             }
         });
+
+
 
         //Saat tombol batal diklik
         batal.setOnClickListener(new View.OnClickListener() {

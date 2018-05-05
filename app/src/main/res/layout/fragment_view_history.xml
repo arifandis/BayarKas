@@ -12,15 +12,16 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tanggal_textview_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Selasa, 7 Maret 2018"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="right"
+            android:text="Selasa, 7 Maret 2018"
             android:textSize="20sp"
-            android:gravity="right"/>
+            android:textStyle="bold" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_list_history"
