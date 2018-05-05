@@ -54,8 +54,9 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     />
-                <EditText
-                    android:id="@+id/nama"
+
+                <AutoCompleteTextView
+                    android:id="@+id/nama_tambah_kas"
                     android:layout_width="308dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -102,12 +103,14 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     />
+
                 <EditText
+                    android:id="@+id/penerima"
                     android:layout_width="308dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:hint="Penerima"
-                    android:paddingLeft="5dp"/>
+                    android:paddingLeft="5dp" />
 
             </LinearLayout>
 
