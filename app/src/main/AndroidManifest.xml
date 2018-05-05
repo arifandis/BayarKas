@@ -21,7 +21,6 @@
         <activity
             android:name=".HomeActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".TambahKasActivity"></activity>
     </application>
 
 </manifest>

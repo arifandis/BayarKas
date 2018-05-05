@@ -1,6 +1,5 @@
 package squad.seven.bayarkas;
 
-import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -9,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import squad.seven.bayarkas.Fragment.FragmentRekap;
+import squad.seven.bayarkas.Fragment.FragmentSettings;
+import squad.seven.bayarkas.Fragment.FragmentTambahKas;
 import squad.seven.bayarkas.Fragment.ViewHistoryFragment;
 
 public class HomeActivity extends AppCompatActivity {
@@ -32,7 +34,21 @@ public class HomeActivity extends AppCompatActivity {
         mTambahBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToTambahKas();
+                toViewTambahKas();
+            }
+        });
+
+        mSettingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toViewSetting();
+            }
+        });
+
+        mRekapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toViewRekap();
             }
         });
 
@@ -45,7 +61,24 @@ public class HomeActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    void goToTambahKas(){
-        startActivity(new Intent(HomeActivity.this,TambahKasActivity.class));
+    void toViewSetting() {
+        fragment = new FragmentSettings();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_view, fragment);
+        transaction.commit();
+    }
+
+    void toViewTambahKas() {
+        fragment = new FragmentTambahKas();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_view, fragment);
+        transaction.commit();
+    }
+
+    void toViewRekap() {
+        fragment = new FragmentRekap();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_view, fragment);
+        transaction.commit();
     }
 }
