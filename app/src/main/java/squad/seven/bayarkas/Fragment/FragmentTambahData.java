@@ -1,6 +1,7 @@
 package squad.seven.bayarkas.Fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -33,6 +34,8 @@ public class FragmentTambahData extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =inflater.inflate(R.layout.fragment_tambah_data, container, false);
+
+        dataHelper = new DataHelper(this.getContext());
 
         mNamaTxt = v.findViewById(R.id.nama);
         mKodeTxt = v.findViewById(R.id.kode_pembayaran);
