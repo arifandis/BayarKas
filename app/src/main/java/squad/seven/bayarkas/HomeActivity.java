@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import squad.seven.bayarkas.Fragment.FragmentRekap;
@@ -15,6 +16,7 @@ import squad.seven.bayarkas.Fragment.FragmentTambahKas;
 import squad.seven.bayarkas.Fragment.ViewHistoryFragment;
 
 public class HomeActivity extends AppCompatActivity {
+    TextView mTitleHeader;
     AppBarLayout mAppBarLayout;
     Button mHomeBtn,mRekapBtn,mSettingBtn;
     int count=0;
@@ -24,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        mTitleHeader = findViewById(R.id.header);
         mAppBarLayout = findViewById(R.id.appBarID);
         mHomeBtn = findViewById(R.id.home);
         mRekapBtn = findViewById(R.id.rekap);
@@ -57,6 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_view,fragment);
         transaction.commit();
+        mTitleHeader.setText("Bayar Kas Apps");
     }
 
     void moveToFragment(int id){
@@ -64,12 +68,15 @@ public class HomeActivity extends AppCompatActivity {
         switch (id){
             case R.id.home:
                 fragment = new ViewHistoryFragment();
+                mTitleHeader.setText("Bayar Kas Apps");
                 break;
             case R.id.rekap:
                 fragment = new FragmentRekap();
+                mTitleHeader.setText("Rekapitulasi");
                 break;
             case R.id.setting:
                 fragment = new FragmentSettings();
+                mTitleHeader.setText("Setting");
                 break;
         }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

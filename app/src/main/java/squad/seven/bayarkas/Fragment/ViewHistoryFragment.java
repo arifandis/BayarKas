@@ -112,7 +112,7 @@ public class ViewHistoryFragment extends Fragment {
 
     String getMonth(){
         Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int day = calendar.get(Calendar.MONTH);
         String bulan=null;
 
         switch (day) {

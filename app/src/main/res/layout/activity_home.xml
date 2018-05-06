@@ -21,7 +21,6 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:background="#00B294"
-        android:text="Bayar Kas Apps"
         android:textSize="25dp"
         android:textColor="#ffffff"
 

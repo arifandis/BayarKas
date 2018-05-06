@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +21,7 @@
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".BuktiActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             android:screenOrientation="portrait"></activity>
     </application>
 
