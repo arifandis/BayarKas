@@ -63,15 +63,8 @@ public class FragmentTambahKas extends Fragment {
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String kodeBayar = kodebayar.getText().toString();
-                String name = nama.getText().toString();
-                String penerimaStr = penerima.getText().toString();
-                String nominalBayarStr = nominalBayar.getText().toString();
-                String tglBayar = tanggalBayar.getText().toString();
+                addingData();
 
-                dbHelper.addDataTransaksi(kodeBayar,name,penerimaStr,tglBayar,nominalBayarStr);
-                Toast.makeText(getActivity(), "Berhasil menambah transaksi", Toast.LENGTH_SHORT).show();
-//                db.close();
             }
         });
 
@@ -109,5 +102,68 @@ public class FragmentTambahKas extends Fragment {
             }
         });
 
+    }
+
+    void addingData(){
+        String kodeBayar = kodebayar.getText().toString();
+        String name = nama.getText().toString();
+        String penerimaStr = penerima.getText().toString();
+        int nominalBayarStr = Integer.parseInt(nominalBayar.getText().toString());
+        String tglBayar = tanggalBayar.getText().toString();
+
+        dbHelper.addDataTransaksi(kodeBayar,name,penerimaStr,tglBayar,nominalBayarStr,getMonth(),getYear());
+        Toast.makeText(getActivity(), "Berhasil menambah transaksi", Toast.LENGTH_SHORT).show();
+    }
+
+    String getMonth(){
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        String bulan=null;
+
+        switch (day) {
+            case Calendar.JANUARY:
+                bulan="Januari";
+                break;
+            case Calendar.FEBRUARY:
+                bulan="Februari";
+                break;
+            case Calendar.MARCH:
+                bulan="Maret";
+                break;
+            case Calendar.APRIL:
+                bulan="April";
+                break;
+            case Calendar.MAY:
+                bulan="Mei";
+                break;
+            case Calendar.JUNE:
+                bulan="Juni";
+                break;
+            case Calendar.JULY:
+                bulan="Juli";
+                break;
+            case Calendar.AUGUST:
+                bulan="Agustus";
+                break;
+            case Calendar.SEPTEMBER:
+                bulan="September";
+                break;
+            case Calendar.OCTOBER:
+                bulan="Oktober";
+                break;
+            case Calendar.NOVEMBER:
+                bulan="Nopember";
+                break;
+            case Calendar.DECEMBER:
+                bulan="Desember";
+                break;
+        }
+        return bulan;
+    }
+
+    int getYear(){
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.DAY_OF_YEAR);
+        return year;
     }
 }

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import squad.seven.bayarkas.DataHelper;
 import squad.seven.bayarkas.R;
 import squad.seven.bayarkas.RekapitulasiDetail;
 
@@ -22,6 +23,7 @@ public class FragmentRekap extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<RekapitulasiDetail> listitem;
+    private DataHelper dbHelper;
 
     public FragmentRekap() {
         // Required empty public constructor
@@ -42,13 +44,10 @@ public class FragmentRekap extends Fragment {
         recyclerView.setLayoutManager(linearLayout);
         linearLayout.setStackFromEnd(true);
 
-        listitem = new ArrayList<>();
-        for (int i = 0; i<100; i++){
-            RekapitulasiDetail listitems = new RekapitulasiDetail("namaorang"+(i+1), "1000"+(i+1));
-            listitem.add(listitems);
-            }
-
+        dbHelper = new DataHelper(getActivity());
+        listitem = dbHelper.getDataRekap();
         adapter = new RekapAdapter(listitem, this.getActivity());
+
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 

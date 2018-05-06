@@ -128,7 +128,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:hint="Nominal Bayar"
-                    android:paddingLeft="5dp"/>
+                    android:paddingLeft="5dp"
+                    android:inputType="numberDecimal"/>
 
             </LinearLayout>
             <LinearLayout

@@ -45,7 +45,7 @@ import squad.seven.bayarkas.RekapitulasiDetail;
         public void onBindViewHolder(RekapAdapter.ViewHolder holder, int position) {
             final RekapitulasiDetail listItem = listitem.get(position);
             holder.namaOrang.setText(listItem.getNama());
-            holder.nominal.setText(listItem.getNominal());
+            holder.nominal.setText("Rp. "+listItem.getNominal());
 
         }
 

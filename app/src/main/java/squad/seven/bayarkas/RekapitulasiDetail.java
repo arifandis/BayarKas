@@ -12,6 +12,9 @@ public class RekapitulasiDetail {
         this.nominal = nominal;
     }
 
+    public RekapitulasiDetail() {
+    }
+
     public String getNama() {
         return nama;
     }

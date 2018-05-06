@@ -48,14 +48,10 @@ public class ViewHistoryAdapter extends RecyclerView.Adapter<ViewHistoryAdapter.
         final HistoryKas listItem = listitem.get(position);
         holder.namaOrang.setText(listItem.getNama());
         holder.nominal.setText(listItem.getNominal());
-
     }
 
     @Override
     public int getItemCount() {
         return listitem.size();
     }
-
-
-
 }

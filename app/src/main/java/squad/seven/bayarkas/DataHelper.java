@@ -27,7 +27,7 @@ public class DataHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE_STAFF = "CREATE TABLE daftar_staff (kodebayar text primary key, nama text, kementrian text)";
         db.execSQL(CREATE_TABLE_STAFF);
-        String CREATE_TABLE_PEMBAYARAN = "CREATE TABLE pembayaran(kodebayar text primary key, nama text, penerima text,nominalbayar text, tglbayar text)";
+        String CREATE_TABLE_PEMBAYARAN = "CREATE TABLE pembayaran(kodebayar text primary key, nama text, penerima text,nominalbayar integer, tglbayar text, bulan text, tahun integer)";
         db.execSQL(CREATE_TABLE_PEMBAYARAN);
 // String sql = "create table biodata (no integer primary key, nama text null, tgl text null, jk text null, alamat text null);";
 //            String komen = "create table komen (komen text);"; nom
@@ -43,7 +43,7 @@ public class DataHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addDataStaff(String kode, String nama, String kementrian) {
+    public void addDataStaff(String kode, String nama, String kementrian) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("kodebayar", kode);
@@ -53,11 +53,9 @@ public class DataHelper extends SQLiteOpenHelper {
         Log.i(TAG, "addDataStaff" +"Kode Bayar: "+ values.get("kodebayar")
                 + "Nama : " + values.get("nama") + "Kementerian : " + values.get("kementrian"));
         db.close();
-
-
     }
 
-    public void addDataTransaksi(String kode, String nama, String penerima, String tanggal, String nominal) {
+    public void addDataTransaksi(String kode, String nama, String penerima, String tanggal, int nominal, String bulan, int year) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("kodebayar", kode);
@@ -65,15 +63,17 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put("penerima", penerima);
         values.put("nominalbayar", nominal);
         values.put("tglbayar", tanggal);
+        values.put("bulan",bulan);
+        values.put("tahun",year);
         db.insert("pembayaran", null, values);
         Log.i(TAG, "addDataPembayaran" +"Kode Bayar: "+ values.get("kodebayar")
                 + "Nama : " + values.get("nama") + "Penerima : " + values.get("penerima") +"Nominal : "
-                + values.get("nominalbayar") + "Tanggal : " + values.get("tglbayar"));
+                + values.get("nominalbayar") + "Tanggal : " + values.get("tglbayar") + values.get("bulan")
+        + values.get("tahun"));
         db.close();
     }
 
     public void loadContent(){
-        onUpgrade(this.getReadableDatabase(), DATABASE_VERSION, DATABASE_VERSION);
         addDataStaff("A2001", "Anjumi", "Keuangan");
         addDataStaff("B2001", "Bibil", "Keuangan");
         addDataStaff("C2001", "Nilna", "Adkest");
@@ -108,7 +108,7 @@ public class DataHelper extends SQLiteOpenHelper {
     public List<HistoryKas> getDataHistory(){
         // DataModel dataModel = new DataModel();
         List<HistoryKas> data=new ArrayList<>();
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select nama,nominalbayar from pembayaran;",null);
         StringBuffer stringBuffer = new StringBuffer();
         HistoryKas dataModel = null;
@@ -130,6 +130,33 @@ public class DataHelper extends SQLiteOpenHelper {
 
         //
 
+        return data;
+    }
+
+    public List<RekapitulasiDetail> getDataRekap(){
+        // DataModel dataModel = new DataModel();
+        List<RekapitulasiDetail> data=new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select nama,nominalbayar from pembayaran;",null);
+        StringBuffer stringBuffer = new StringBuffer();
+        RekapitulasiDetail dataModel = null;
+        while (cursor.moveToNext()) {
+            dataModel= new RekapitulasiDetail();
+            String name = cursor.getString(cursor.getColumnIndexOrThrow("nama"));
+            String nominal = cursor.getString(cursor.getColumnIndexOrThrow("nominalbayar"));
+            dataModel.setNama(name);
+            dataModel.setNominal(nominal);
+            stringBuffer.append(dataModel);
+            // stringBuffer.append(dataModel);
+            data.add(dataModel);
+        }
+
+        for (RekapitulasiDetail mo:data ) {
+
+            Log.i("Hellomo",""+mo.getNama());
+        }
+
+        //
         return data;
     }
 
