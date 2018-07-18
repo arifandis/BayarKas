@@ -43,14 +43,14 @@ public class ViewHistoryFragment extends Fragment {
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
 
-        dateTxt.setText(getDay()+", "+" "+getDayInt()+" "+getMonth()+" "+getYear());
+        dateTxt.setText(getDay()+", "+" "+getDate()+" "+getMonth()+" "+getYear());
 
         LinearLayoutManager linearLayout = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(linearLayout);
         linearLayout.setStackFromEnd(true);
 
         dbHelper = new DataHelper(getActivity());
-        listitem = dbHelper.getDataHistory();
+        listitem = dbHelper.getDataHistory(getDate(),getMonth(),getYear());
         adapter = new ViewHistoryAdapter(listitem,getActivity());
 
         recyclerView.setAdapter(adapter);
@@ -59,6 +59,7 @@ public class ViewHistoryFragment extends Fragment {
         tambahKas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getActivity().setTitle("Tambah Pembayaran");
                 goToTambahKas();
             }
         });
@@ -103,7 +104,7 @@ public class ViewHistoryFragment extends Fragment {
         return hari;
     }
 
-    int getDayInt(){
+    int getDate(){
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DATE);
 

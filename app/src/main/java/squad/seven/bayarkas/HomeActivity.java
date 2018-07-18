@@ -1,8 +1,10 @@
 package squad.seven.bayarkas;
 
+import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +16,7 @@ import squad.seven.bayarkas.Fragment.FragmentRekap;
 import squad.seven.bayarkas.Fragment.FragmentSettings;
 import squad.seven.bayarkas.Fragment.FragmentTambahKas;
 import squad.seven.bayarkas.Fragment.ViewHistoryFragment;
+import squad.seven.bayarkas.R;
 
 public class HomeActivity extends AppCompatActivity {
     TextView mTitleHeader;
@@ -24,6 +27,8 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.abs_layout);
         setContentView(R.layout.activity_home);
 
         mTitleHeader = findViewById(R.id.header);
@@ -90,9 +95,21 @@ public class HomeActivity extends AppCompatActivity {
         switch (count){
             case 1:
                 Toast.makeText(this, "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT).show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try{
+                            Thread.sleep(2000);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                        count--;
+                    }
+                }).start();
                 break;
             case 2:
                 finish();
+                System.exit(0);
                 break;
         }
     }

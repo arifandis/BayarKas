@@ -2,9 +2,11 @@ package squad.seven.bayarkas.Fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +15,13 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import squad.seven.bayarkas.BuktiActivity;
 import squad.seven.bayarkas.DataHelper;
 import squad.seven.bayarkas.R;
 
@@ -44,7 +48,7 @@ public class FragmentTambahKas extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tambah_kas, container, false);
-        nama = (AutoCompleteTextView) view.findViewById(R.id.nama_tambah_kas);
+        nama = view.findViewById(R.id.nama_tambah_kas);
         kodebayar = view.findViewById(R.id.kode_pembayaran);
         penerima = view.findViewById(R.id.penerima);
         nominalBayar = view.findViewById(R.id.nominal_bayar);
@@ -72,7 +76,7 @@ public class FragmentTambahKas extends Fragment {
         batal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                moveToHome();
             }
         });
 
@@ -99,6 +103,9 @@ public class FragmentTambahKas extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getContext(), (CharSequence) parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+
+                String name = nama.getText().toString();
+                kodebayar.setText(""+dbHelper.getCode(name));
             }
         });
 
@@ -109,15 +116,30 @@ public class FragmentTambahKas extends Fragment {
         String name = nama.getText().toString();
         String penerimaStr = penerima.getText().toString();
         int nominalBayarStr = Integer.parseInt(nominalBayar.getText().toString());
-        String tglBayar = tanggalBayar.getText().toString();
 
-        dbHelper.addDataTransaksi(kodeBayar,name,penerimaStr,tglBayar,nominalBayarStr,getMonth(),getYear());
+        dbHelper.addDataTransaksi(kodeBayar,name,penerimaStr,getDate(),nominalBayarStr,getMonth(),getYear());
         Toast.makeText(getActivity(), "Berhasil menambah transaksi", Toast.LENGTH_SHORT).show();
+        moveToHome();
+        startActivity(new Intent(getActivity(), BuktiActivity.class));
+    }
+
+    void moveToHome(){
+        Fragment fragment = new ViewHistoryFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_view,fragment);
+        transaction.commit();
+    }
+
+    int getDate(){
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DATE);
+
+        return day;
     }
 
     String getMonth(){
         Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int day = calendar.get(Calendar.MONTH);
         String bulan=null;
 
         switch (day) {
@@ -163,7 +185,7 @@ public class FragmentTambahKas extends Fragment {
 
     int getYear(){
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.DAY_OF_YEAR);
+        int year = calendar.get(Calendar.YEAR);
         return year;
     }
 }
