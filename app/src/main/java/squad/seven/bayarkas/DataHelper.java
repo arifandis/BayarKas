@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
 import android.util.Log;
 import android.content.pm.PackageManager;
+import android.widget.Toast;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -22,7 +23,13 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 import squad.seven.bayarkas.POJO.RekapitulasiDetail;
 
 /**
@@ -34,7 +41,7 @@ public class DataHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     private static final String TAG = "";
     private static final String TAG2 = "DataHelper";
-    public static File pdfFile;
+    public static File xlsFile;
 //    final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
 
     public DataHelper(Context context) {
@@ -153,7 +160,6 @@ public class DataHelper extends SQLiteOpenHelper {
     }
 
     public List<RekapitulasiDetail> getDataRekap(String bulan){
-        // DataModel dataModel = new DataModel();
         List<RekapitulasiDetail> data=new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select nama,nominalbayar from pembayaran where bulan='"+bulan+"';",null);
@@ -203,57 +209,57 @@ public class DataHelper extends SQLiteOpenHelper {
         return code;
     }
 
-    public void createPdf(String month) throws FileNotFoundException, DocumentException {
+    public void createXls(String month,Context context) throws FileNotFoundException, DocumentException {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select nama,penerima,nominalbayar,tglbayar,bulan,tahun from pembayaran where bulan='"+month+"';",null);
 
-        File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
-        if (!docsFolder.exists()) {
-            docsFolder.mkdir();
-            Log.i(TAG, "Created a new directory for PDF");
+        File sd = Environment.getExternalStorageDirectory();
+        String csvFile = "Rekapan Bulan "+month+".xls";
+
+        File directory = new File(sd.getAbsolutePath());
+        if (!directory.isDirectory()){
+            directory.mkdirs();
         }
 
-        pdfFile = new File(docsFolder.getAbsolutePath(),"Rekapan Bulan "+month+".pdf");
-        OutputStream output = new FileOutputStream(pdfFile);
+        try {
+            File file = new File(directory,csvFile);
+            WorkbookSettings wbSettings = new WorkbookSettings();
+            wbSettings.setLocale(new Locale("en","ID"));
+            WritableWorkbook workbook;
+            workbook = Workbook.createWorkbook(file,wbSettings);
 
-        Document document = new Document();
-        PdfWriter.getInstance(document, output);
+            WritableSheet sheet = workbook.createSheet("rekapan",0);
 
-        document.open();
-        PdfPTable table0 = new PdfPTable(4); // 4 columns.
-        PdfPTable table = new PdfPTable(4); // 4 columns.
+            sheet.addCell(new Label(0,0,"Pembayaran"));
+            sheet.addCell(new Label(1,0,"Penerima"));
+            sheet.addCell(new Label(2,0,"Nominal Pembayaran"));
+            sheet.addCell(new Label(3,0,"Tanggal Pembayaran"));
 
-        PdfPCell cell01 = new PdfPCell(new Paragraph("Pembayar"));
-        PdfPCell cell02 = new PdfPCell(new Paragraph("Penerima"));
-        PdfPCell cell03 = new PdfPCell(new Paragraph("Nominal Pembayaran"));
-        PdfPCell cell04 = new PdfPCell(new Paragraph("Tanggal Pembayaran"));
+            if (cursor.moveToFirst()){
+                do {
+                    String name = cursor.getString(cursor.getColumnIndexOrThrow("nama"));
+                    String penerima = cursor.getString(cursor.getColumnIndexOrThrow("penerima"));
+                    String nominal = Integer.toString(cursor.getInt(cursor.getColumnIndexOrThrow("nominalbayar")));
+                    String tglBayar = Integer.toString(cursor.getInt(cursor.getColumnIndexOrThrow("tglbayar")));
+                    String bulan = cursor.getString(cursor.getColumnIndexOrThrow("bulan"));
+                    String tahun = Integer.toString(cursor.getInt(cursor.getColumnIndexOrThrow("tahun")));
 
-        table.addCell(cell01);
-        table.addCell(cell02);
-        table.addCell(cell03);
-        table.addCell(cell04);
+                    int i = cursor.getPosition() + 1;
+                    sheet.addCell(new Label(0,i,name));
+                    sheet.addCell(new Label(1,i,penerima));
+                    sheet.addCell(new Label(2,i,"Rp. "+nominal));
+                    sheet.addCell(new Label(3,i,tglBayar+" "+bulan+" "+tahun));
 
-        while (cursor.moveToNext()) {
-            String name = cursor.getString(cursor.getColumnIndexOrThrow("nama"));
-            String penerima = cursor.getString(cursor.getColumnIndexOrThrow("penerima"));
-            String nominal = Integer.toString(cursor.getInt(cursor.getColumnIndexOrThrow("nominalbayar")));
-            String tglBayar = Integer.toString(cursor.getInt(cursor.getColumnIndexOrThrow("tglbayar")));
-            String bulan = cursor.getString(cursor.getColumnIndexOrThrow("bulan"));
-            String tahun = Integer.toString(cursor.getInt(cursor.getColumnIndexOrThrow("tahun")));
+                }while (cursor.moveToNext());
+            }
 
-            PdfPCell cell1 = new PdfPCell(new Paragraph(name));
-            PdfPCell cell2 = new PdfPCell(new Paragraph(penerima));
-            PdfPCell cell3 = new PdfPCell(new Paragraph(nominal));
-            PdfPCell cell4 = new PdfPCell(new Paragraph(tglBayar+" "+bulan+" "+tahun));
-
-            table.addCell(cell1);
-            table.addCell(cell2);
-            table.addCell(cell3);
-            table.addCell(cell4);
+            cursor.close();
+            workbook.write();
+            workbook.close();
+            Toast.makeText(context, "Data Exported in a Excel Sheet", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            e.getMessage();
         }
 
-        document.add(table);
-        document.close();
-//        previewPdf();
     }
 }

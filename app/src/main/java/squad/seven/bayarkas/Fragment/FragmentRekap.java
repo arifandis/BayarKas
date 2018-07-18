@@ -41,7 +41,6 @@ public class FragmentRekap extends Fragment {
     private RecyclerView.Adapter adapter;
     private List<RekapitulasiDetail> listitem;
     private DataHelper dbHelper;
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
 
     public FragmentRekap() {
         // Required empty public constructor
@@ -62,17 +61,9 @@ public class FragmentRekap extends Fragment {
         mSum = v.findViewById(R.id.sum);
         mExportBtn = v.findViewById(R.id.export_btn);
 
-//        mSum.setText(""+dbHelper.selectSumPeriod("Juli"));
-
         LinearLayoutManager linearLayout = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(linearLayout);
         linearLayout.setStackFromEnd(true);
-
-//        listitem = dbHelper.getDataRekap("Januari");
-//        adapter = new RekapAdapter(listitem, this.getActivity());
-
-//        recyclerView.setAdapter(adapter);
-//        adapter.notifyDataSetChanged();
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -170,7 +161,7 @@ public class FragmentRekap extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    createPdfWrapper(bulan);
+                    dbHelper.createXls(bulan,getContext());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (DocumentException e) {
@@ -180,65 +171,4 @@ public class FragmentRekap extends Fragment {
             }
         });
     }
-
-    private void createPdfWrapper(String bulan) throws FileNotFoundException,DocumentException {
-
-        int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_CONTACTS)) {
-                    Toast.makeText(getActivity(), "You need to allow access to Storage", Toast.LENGTH_SHORT).show();
-                }
-
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        REQUEST_CODE_ASK_PERMISSIONS);
-            }
-            return;
-        }else {
-            dbHelper.createPdf(bulan);
-            previewPdf();
-        }
-    }
-
-    private void previewPdf() {
-
-        PackageManager packageManager = getActivity().getPackageManager();
-        Intent testIntent = new Intent(Intent.ACTION_VIEW);
-        testIntent.setType("application/pdf");
-        List list = packageManager.queryIntentActivities(testIntent, PackageManager.MATCH_DEFAULT_ONLY);
-        if (list.size() > 0) {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            Uri uri = Uri.fromFile(DataHelper.pdfFile);
-            intent.setDataAndType(uri, "application/pdf");
-
-            startActivity(intent);
-        }else{
-            Toast.makeText(getActivity(),"Download a PDF Viewer to see the generated PDF",Toast.LENGTH_SHORT).show();
-        }
-    }
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-//        switch (requestCode) {
-//            case REQUEST_CODE_ASK_PERMISSIONS:
-//                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    // Permission Granted
-//                    try {
-//                        createPdfWrapper();
-//                    } catch (FileNotFoundException e) {
-//                        e.printStackTrace();
-//                    } catch (DocumentException e) {
-//                        e.printStackTrace();
-//                    }
-//                } else {
-//                    // Permission Denied
-//                    Toast.makeText(getActivity(), "WRITE_EXTERNAL Permission Denied", Toast.LENGTH_SHORT)
-//                            .show();
-//                }
-//                break;
-//            default:
-//                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        }
-//    }
 }
