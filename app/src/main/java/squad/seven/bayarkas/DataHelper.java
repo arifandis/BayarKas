@@ -94,7 +94,7 @@ public class DataHelper extends SQLiteOpenHelper {
         Log.i(TAG, "addDataPembayaran" +"Kode Bayar: "+ values.get("kodebayar")
                 + "Nama : " + values.get("nama") + "Penerima : " + values.get("penerima") +"Nominal : "
                 + values.get("nominalbayar") + "Tanggal : " + values.get("tglbayar") + values.get("bulan")
-        + values.get("tahun"));
+                + values.get("tahun"));
         db.close();
     }
 

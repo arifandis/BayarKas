@@ -23,6 +23,7 @@
             android:textSize="20sp"
             android:gravity="right"/>
 
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_list_history"
                     android:layout_width="match_parent"

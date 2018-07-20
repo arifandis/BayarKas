@@ -1,6 +1,5 @@
 package squad.seven.bayarkas.Fragment;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -49,7 +48,9 @@ public class FragmentTambahKas extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tambah_kas, container, false);
+
         nama = view.findViewById(R.id.nama_tambah_kas);
+
         kodebayar = view.findViewById(R.id.kode_pembayaran);
         penerima = view.findViewById(R.id.penerima);
         nominalBayar = view.findViewById(R.id.nominal_bayar);
@@ -58,6 +59,7 @@ public class FragmentTambahKas extends Fragment {
         batal = view.findViewById(R.id.batal);
 
         //Set CurrentDate
+
         mCurrentDate = dateFormat.format(c.getTime());
         tanggalBayar.setText(mCurrentDate);
 
@@ -77,7 +79,9 @@ public class FragmentTambahKas extends Fragment {
         batal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 moveToHome();
+
             }
         });
 
