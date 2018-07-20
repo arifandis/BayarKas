@@ -36,6 +36,7 @@ public class FragmentTambahKas extends Fragment {
     Button batal, simpan;
     private DataHelper dbHelper;
     String[] namaStaff;
+    String mCurrentDate;
 
     //    View view;
     public FragmentTambahKas() {
@@ -57,8 +58,8 @@ public class FragmentTambahKas extends Fragment {
         batal = view.findViewById(R.id.batal);
 
         //Set CurrentDate
-        String currentDate = dateFormat.format(c.getTime());
-        tanggalBayar.setText(currentDate);
+        mCurrentDate = dateFormat.format(c.getTime());
+        tanggalBayar.setText(mCurrentDate);
 
         initAutoCompleteNama(namaStaff, nama);
         System.out.println(namaStaff);
@@ -120,7 +121,12 @@ public class FragmentTambahKas extends Fragment {
         dbHelper.addDataTransaksi(kodeBayar,name,penerimaStr,getDate(),nominalBayarStr,getMonth(),getYear());
         Toast.makeText(getActivity(), "Berhasil menambah transaksi", Toast.LENGTH_SHORT).show();
         moveToHome();
-        startActivity(new Intent(getActivity(), BuktiActivity.class));
+        Intent intent = new Intent(getActivity(),BuktiActivity.class);
+        intent.putExtra("nama", name);
+        intent.putExtra("kode", kodeBayar);
+        intent.putExtra("tanggal", mCurrentDate);
+        intent.putExtra("nominal", nominalBayar.getText().toString());
+        startActivity(intent);
     }
 
     void moveToHome(){
