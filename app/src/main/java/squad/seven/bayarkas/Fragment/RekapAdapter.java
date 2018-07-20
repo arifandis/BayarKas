@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.List;
 import squad.seven.bayarkas.R;
-import squad.seven.bayarkas.RekapitulasiDetail;
+import squad.seven.bayarkas.POJO.RekapitulasiDetail;
 
     /**
      * Created by afridha on 05/05/18.

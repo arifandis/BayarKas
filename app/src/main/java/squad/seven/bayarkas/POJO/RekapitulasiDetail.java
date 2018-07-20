@@ -1,4 +1,4 @@
-package squad.seven.bayarkas;
+package squad.seven.bayarkas.POJO;
 
 /**
  * Created by afridha on 05/05/18.

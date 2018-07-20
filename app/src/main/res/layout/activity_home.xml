@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context="squad.seven.bayarkas.HomeActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -12,22 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:elevation="0dp">
-
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:background="#00B294"
-        android:textSize="25dp"
-        android:textColor="#ffffff"
-
-        />
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:elevation="0dp"
+        android:background="@color/white">
 
     <LinearLayout
-        android:layout_width="365dp"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:gravity="center"
@@ -39,28 +31,29 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@drawable/home"
-            />
+            android:layout_marginLeft="20dp"/>
         <Button
             android:id="@+id/rekap"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:background="@drawable/rekap"/>
         <Button
             android:id="@+id/setting"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:background="@drawable/setting"/>
+            android:background="@drawable/setting"
+            android:layout_marginRight="20dp"/>
 
     </LinearLayout>
 
     <View
         android:layout_marginTop="5dp"
-        android:layout_width="375dp"
+        android:layout_width="match_parent"
         android:layout_height="3dp"
         android:background="@android:color/black"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
