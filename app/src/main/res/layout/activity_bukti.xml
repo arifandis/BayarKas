@@ -7,20 +7,6 @@
     android:orientation="vertical"
     tools:context="squad.seven.bayarkas.BuktiActivity">
 
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:background="#00B294"
-        android:text="Tambah Pembayaran"
-        android:textSize="25dp"
-        android:textColor="#ffffff"
-
-        />
-
     <ImageView
         android:layout_width="180dp"
         android:layout_height="180dp"

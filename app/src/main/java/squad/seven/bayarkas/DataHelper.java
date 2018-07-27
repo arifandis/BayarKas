@@ -104,7 +104,6 @@ public class DataHelper extends SQLiteOpenHelper {
         addDataStaff("C2001", "Nilna", "Adkest");
         addDataStaff("E2001", "Agung", "BPI");
         addDataStaff("H3001", "Ilma", "Seskab");
-        addDataStaff("H3001", "Ilma", "Seskab");
     }
 
     public String[] selectAllData() {

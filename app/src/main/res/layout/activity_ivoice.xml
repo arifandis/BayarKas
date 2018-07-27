@@ -14,6 +14,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:background="@color/green">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,8 +23,8 @@
             <LinearLayout
                 android:layout_width="339dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -43,46 +44,48 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:gravity="center"
                     android:text="Nama"
-                    android:textSize="20dp"
-                    android:gravity="center"/>
+                    android:textSize="20dp" />
+
                 <TextView
                     android:id="@+id/kode_pembayaran"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kode Bayar"
                     android:gravity="center"
+                    android:text="Kode Bayar"
                     android:textSize="20dp" />
+
                 <TextView
                     android:id="@+id/tanggal_bayar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
+                    android:gravity="center"
                     android:text="Tanggal Bayar"
-                    android:gravity="center"/>
+                    android:textSize="20dp" />
 
                 <ImageView
-                    android:layout_marginTop="7dp"
                     android:layout_width="290dp"
                     android:layout_height="4dp"
                     android:layout_gravity="center"
-                    android:background="#00B294"/>
+                    android:layout_marginTop="7dp"
+                    android:background="#00B294" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
                     android:text="Terima Kasih \nSudah Membayar Kas :)"
                     android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"/>
+                    android:textStyle="bold" />
 
                 <ImageView
-                    android:layout_marginTop="7dp"
                     android:layout_width="290dp"
                     android:layout_height="7dp"
                     android:layout_gravity="center"
-                    android:background="#00B294"/>
+                    android:layout_marginTop="7dp"
+                    android:background="#00B294" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -91,11 +94,11 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_marginLeft="5dp"
                         android:layout_width="100dp"
                         android:layout_height="90dp"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="25dp"
-                        android:src="@drawable/barcode"/>
+                        android:src="@drawable/barcode" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -106,27 +109,29 @@
                             android:id="@+id/total_bayar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="5dp"
                             android:layout_marginTop="5dp"
+                            android:gravity="center_vertical"
                             android:text="Rp 9999999999999;"
                             android:textSize="23dp"
-                            android:layout_marginLeft="5dp"
-                            android:gravity="center_vertical"
-                            android:layout_marginBottom="10dp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
+
                         <ImageView
                             android:layout_width="207dp"
                             android:layout_height="5dp"
                             android:layout_marginLeft="2dp"
-                            android:background="#00B294"/>
+                            android:background="#00B294" />
+
                         <TextView
                             android:layout_width="210dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
                             android:layout_marginTop="10dp"
                             android:text="Best Regard,\n From Bendahara"
+                            android:textAlignment="textEnd"
                             android:textSize="18dp"
-                            android:textStyle="bold"
-                            android:layout_marginRight="5dp"
-                            android:textAlignment="textEnd"/>
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 

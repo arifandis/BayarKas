@@ -58,13 +58,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-//        mTambahBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                toViewTambahKas();
-//            }
-//        });
-
     }
 
     void firstFragment(){

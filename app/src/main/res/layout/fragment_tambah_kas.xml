@@ -1,6 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_tambah_kas"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,14 +13,13 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:background="#00B294"
         android:gravity="center"
+        android:background="#00B294"
         android:text="Tambah Pembayaran"
-        android:textColor="#ffffff"
         android:textSize="25dp"
+        android:textColor="#ffffff"
 
         />
-
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -43,15 +41,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="5dp"
-                android:background="#ffffff"
-                android:orientation="horizontal">
+                android:background="#ffffff">
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:src="@drawable/nama_bayar"
                     android:layout_gravity="center_vertical"
-
                     />
                 <AutoCompleteTextView
                     android:id="@+id/nama_tambah_kas"
@@ -59,23 +57,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:hint="Nama"
-                    android:paddingLeft="5dp" />
+                    android:paddingLeft="5dp"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="5dp"
-                android:background="#ffffff"
-                android:orientation="horizontal">
+                android:background="#ffffff">
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:src="@drawable/kode_bayar"
                     android:layout_gravity="center_vertical"
                     />
-
                 <EditText
                     android:id="@+id/kode_pembayaran"
                     android:layout_width="match_parent"
@@ -90,13 +88,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="5dp"
-                android:background="#ffffff"
-                android:orientation="horizontal">
+                android:background="#ffffff">
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:src="@drawable/penerima_bayar"
                     android:layout_gravity="center_vertical"
                     />
                 <EditText
@@ -105,23 +104,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:hint="Penerima"
-                    android:paddingLeft="5dp" />
+                    android:paddingLeft="5dp"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="5dp"
-                android:background="#ffffff"
-                android:orientation="horizontal">
+                android:background="#ffffff">
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:src="@drawable/nominal_bayar"
                     android:layout_gravity="center_vertical"
                     />
-
                 <EditText
                     android:id="@+id/nominal_bayar"
                     android:layout_width="308dp"
@@ -131,22 +130,20 @@
                     android:paddingLeft="5dp"
                     android:inputType="numberDecimal"/>
 
-
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="5dp"
-                android:background="#ffffff"
-                android:orientation="horizontal">
+                android:background="#ffffff">
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:src="@drawable/tanggal"
                     android:layout_gravity="center_vertical"
                     />
-
                 <EditText
                     android:id="@+id/tanggal_bayar"
                     android:layout_width="match_parent"
@@ -155,6 +152,7 @@
                     android:hint="Tanggal Bayar"
                     android:paddingLeft="5dp"
                     android:enabled="false"/>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -164,11 +162,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:paddingBottom="5dp"
         android:gravity="center"
-        android:orientation="horizontal"
 
         >
 
@@ -178,18 +176,18 @@
             android:layout_height="40dp"
             android:background="@drawable/button_green"
             android:text="Batal"
-            android:textColor="#ffffff"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:textColor="#ffffff"/>
 
         <Button
             android:id="@+id/simpan"
             android:layout_width="110dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="50dp"
             android:background="@drawable/button_green"
+            android:layout_marginLeft="50dp"
             android:text="Simpan"
-            android:textColor="#ffffff"
             android:textSize="18dp"
+            android:textColor="#ffffff"
 
             />
 

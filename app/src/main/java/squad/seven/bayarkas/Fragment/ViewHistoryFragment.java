@@ -12,11 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 import squad.seven.bayarkas.DataHelper;
 import squad.seven.bayarkas.HistoryKas;
@@ -29,9 +27,7 @@ public class ViewHistoryFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<HistoryKas> listitem;
-    TextView tanggal;
-    Calendar c = Calendar.getInstance();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
     public ViewHistoryFragment() {
         // Required empty public constructor
     }
@@ -43,7 +39,6 @@ public class ViewHistoryFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_view_history, container, false);
         tambahKas = v.findViewById(R.id.button_tambah);
         dateTxt = v.findViewById(R.id.date_id);
-
         recyclerView = v.findViewById(R.id.recycler_list_history);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);

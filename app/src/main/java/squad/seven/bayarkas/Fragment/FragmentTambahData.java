@@ -39,8 +39,8 @@ public class FragmentTambahData extends Fragment {
         mNamaTxt = v.findViewById(R.id.nama);
         mKodeTxt = v.findViewById(R.id.kode_pembayaran);
         mKementrianTxt = v.findViewById(R.id.kementrian);
-        mBatalBtn = v.findViewById(R.id.batal);
-        mSimpanBtn = v.findViewById(R.id.simpan);
+        mBatalBtn = v.findViewById(R.id.batal_tambah_data);
+        mSimpanBtn = v.findViewById(R.id.simpan_tambah_data);
 
         mSimpanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
