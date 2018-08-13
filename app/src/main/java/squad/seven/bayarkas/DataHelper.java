@@ -229,6 +229,11 @@ public class DataHelper extends SQLiteOpenHelper {
 
             WritableSheet sheet = workbook.createSheet("rekapan",0);
 
+            sheet.setColumnView(0,12);
+            sheet.setColumnView(1,12);
+            sheet.setColumnView(2,19);
+            sheet.setColumnView(3,19);
+
             sheet.addCell(new Label(0,0,"Pembayaran"));
             sheet.addCell(new Label(1,0,"Penerima"));
             sheet.addCell(new Label(2,0,"Nominal Pembayaran"));
