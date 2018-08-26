@@ -70,7 +70,7 @@ public class FragmentRekap extends Fragment {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 switch (position){
                     case 0:
-                        mSum.setText("Rp. "+dbHelper.selectSumPeriod("Janurai"));
+                        mSum.setText("Rp. "+dbHelper.selectSumPeriod("Januari"));
                         listitem = dbHelper.getDataRekap("Januari");
                         adapter = new RekapAdapter(listitem, getActivity());
                         onClickExport("Januari");

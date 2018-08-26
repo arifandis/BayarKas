@@ -22,12 +22,20 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
 import jxl.Workbook;
 import jxl.WorkbookSettings;
+import jxl.format.Alignment;
+import jxl.format.Border;
+import jxl.format.BorderLineStyle;
+import jxl.format.Colour;
+import jxl.format.VerticalAlignment;
 import jxl.write.Label;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import squad.seven.bayarkas.POJO.RekapitulasiDetail;
@@ -212,8 +220,11 @@ public class DataHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select nama,penerima,nominalbayar,tglbayar,bulan,tahun from pembayaran where bulan='"+month+"';",null);
 
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+
         File sd = Environment.getExternalStorageDirectory();
-        String csvFile = "Rekapan Bulan "+month+".xls";
+        String csvFile = "Rekapan Bulan "+month+" "+year+".xls";
 
         File directory = new File(sd.getAbsolutePath());
         if (!directory.isDirectory()){
@@ -227,12 +238,59 @@ public class DataHelper extends SQLiteOpenHelper {
             WritableWorkbook workbook;
             workbook = Workbook.createWorkbook(file,wbSettings);
 
-            WritableSheet sheet = workbook.createSheet("rekapan",0);
+            WritableSheet sheet = workbook.createSheet("Rekapitulasi",0);
 
-            sheet.addCell(new Label(0,0,"Pembayaran"));
-            sheet.addCell(new Label(1,0,"Penerima"));
-            sheet.addCell(new Label(2,0,"Nominal Pembayaran"));
-            sheet.addCell(new Label(3,0,"Tanggal Pembayaran"));
+            //Formatted Title
+            WritableFont titleFont = new WritableFont(WritableFont.ARIAL, 14);
+            titleFont.setBoldStyle(WritableFont.BOLD);
+
+            WritableCellFormat cellFormat1 = new WritableCellFormat(titleFont);
+            cellFormat1.setAlignment(Alignment.CENTRE);
+            cellFormat1.setVerticalAlignment(VerticalAlignment.CENTRE);
+
+            //Formatted Data Header
+            WritableFont headerFont = new WritableFont(WritableFont.ARIAL, 12);
+            headerFont.setBoldStyle(WritableFont.BOLD);
+
+            WritableCellFormat cellFormat2 = new WritableCellFormat(headerFont);
+            cellFormat2.setBackground(Colour.SEA_GREEN);
+            cellFormat2.setAlignment(Alignment.CENTRE);
+            cellFormat2.setVerticalAlignment(VerticalAlignment.CENTRE);
+            cellFormat2.setBorder(Border.ALL, BorderLineStyle.THIN);
+
+            //Formatted Data Style
+            WritableFont dataFont = new WritableFont(WritableFont.ARIAL, 11);
+
+            WritableCellFormat cellFormat3 = new WritableCellFormat(dataFont);
+            cellFormat3.setAlignment(Alignment.LEFT);
+            cellFormat3.setVerticalAlignment(VerticalAlignment.CENTRE);
+            cellFormat3.setBorder(Border.ALL, BorderLineStyle.THIN);
+
+            //Formatted Total Data Style
+            WritableFont dataTotalFont = new WritableFont(WritableFont.ARIAL, 11);
+            dataTotalFont.setBoldStyle(WritableFont.BOLD);
+
+            WritableCellFormat cellFormat4 = new WritableCellFormat(dataTotalFont);
+            cellFormat4.setAlignment(Alignment.CENTRE);
+            cellFormat4.setVerticalAlignment(VerticalAlignment.CENTRE);
+            cellFormat4.setBorder(Border.ALL, BorderLineStyle.THIN);
+
+            sheet.setColumnView(0, 18);
+            sheet.setColumnView(1, 20);
+            sheet.setColumnView(2,20);
+            sheet.setColumnView(3, 18);
+            sheet.mergeCells(0, 0, 3, 0);// Merge col[0-3] and row[0]
+            sheet.addCell(new Label(0, 0, "Rekapitulasi Pembayaran Kas", cellFormat1));
+            sheet.mergeCells(0, 1, 3, 1);// Merge col[0-3] and row[1]
+            sheet.addCell(new Label(0, 1, "BEM FILKOM UB", cellFormat1));
+            sheet.mergeCells(0, 2, 3, 2);// Merge col[0-3] and row[2]
+            sheet.addCell(new Label(0, 2, month+" "+year, cellFormat1));
+
+            //Header Data Excel
+            sheet.addCell(new Label(0,4,"Tanggal Bayar", cellFormat2));
+            sheet.addCell(new Label(1,4,"Nama", cellFormat2));
+            sheet.addCell(new Label(2,4,"Penerima", cellFormat2));
+            sheet.addCell(new Label(3,4,"Nominal Bayar", cellFormat2));
 
             if (cursor.moveToFirst()){
                 do {
@@ -243,15 +301,18 @@ public class DataHelper extends SQLiteOpenHelper {
                     String bulan = cursor.getString(cursor.getColumnIndexOrThrow("bulan"));
                     String tahun = Integer.toString(cursor.getInt(cursor.getColumnIndexOrThrow("tahun")));
 
-                    int i = cursor.getPosition() + 1;
-                    sheet.addCell(new Label(0,i,name));
-                    sheet.addCell(new Label(1,i,penerima));
-                    sheet.addCell(new Label(2,i,"Rp. "+nominal));
-                    sheet.addCell(new Label(3,i,tglBayar+" "+bulan+" "+tahun));
+                    int i = cursor.getPosition() + 5;
+                    sheet.addCell(new Label(0,i,tglBayar+" "+bulan+" "+tahun, cellFormat3));
+                    sheet.addCell(new Label(1,i, name, cellFormat3));
+                    sheet.addCell(new Label(2,i, penerima, cellFormat3));
+                    sheet.addCell(new Label(3,i,"Rp. "+nominal, cellFormat3));
 
                 }while (cursor.moveToNext());
             }
-
+            int lastRow = sheet.getRows();
+            sheet.mergeCells(0, lastRow, 2, lastRow);// Merge col[0-3] and last row
+            sheet.addCell(new Label(0, lastRow,"Total Pemasukan", cellFormat4));
+            sheet.addCell(new Label(3, lastRow, "Rp. "+ selectSumPeriod(month), cellFormat3));
             cursor.close();
             workbook.write();
             workbook.close();
