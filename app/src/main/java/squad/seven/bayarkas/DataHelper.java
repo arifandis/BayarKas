@@ -317,7 +317,7 @@ public class DataHelper extends SQLiteOpenHelper {
             workbook.write();
             workbook.close();
             Toast.makeText(context, "Data Exported in a Excel Sheet", Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
+        } catch (Exception e){
             e.getMessage();
         }
 

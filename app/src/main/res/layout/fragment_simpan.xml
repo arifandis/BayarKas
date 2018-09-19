@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_simpan"
     android:layout_width="match_parent"
@@ -7,46 +7,38 @@
     tools:context="squad.seven.bayarkas.Fragment.FragmentSimpan">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="375dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:background="#00B294"
-        android:gravity="center"
-        android:text="Tambah Pembayaran"
-        android:textColor="#ffffff"
-        android:textSize="25dp"
 
-        />
+        <ImageView
+            android:id="@+id/gambar_ceklis"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/gambar_ceklis"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"/>
 
-    <ImageView
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/gambar_ceklis" />
+        <TextView
+            android:id="@+id/teks_bukti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/gambar_ceklis"
+            android:gravity="center"
+            android:text="Data telah berhasil di simpan\nTerima kasih sudah membayar\n:)"
+            android:textSize="20dp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="Data telah berhasil di simpan\nTerima kasih sudah membayar\n:)"
-        android:textSize="20dp" />
+        <Button
+            android:id="@+id/cetak_bukti_button"
+            android:layout_width="230dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="60dp"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/teks_bukti"
+            android:background="@drawable/button_green"
+            android:text="Cetak Bukti Pembayaran"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
-
-    <Button
-        android:id="@+id/cetak_bukti_button"
-        android:layout_width="230dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/button_green"
-        android:text="Cetak Bukti Pembayaran"
-        android:textColor="#ffffff"
-        android:textSize="18dp"
-        android:textStyle="bold" />
-
-</LinearLayout>
+</RelativeLayout>

@@ -17,18 +17,18 @@
             android:id="@+id/namaOrangRekap"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
-            android:text="Nama_orang"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"/>
+            android:text="Nama Orang"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/nominalListRekap"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
-            android:text="Rp 999999999999999"
+            android:text="Rp 99999999"
             android:textSize="20dp" />
 
     </LinearLayout>
